@@ -7,7 +7,7 @@ if __name__ == "__main__":
 
     # Create table
     c.execute('''CREATE TABLE papers
-                 (paper_id INTEGER PRIMARY KEY AUTOINCREMENT, title text, description text, link text)''')
+                 (paper_id INTEGER PRIMARY KEY AUTOINCREMENT, title text, description text, link text UNIQUE)''')
 
     # Create tags table
     c.execute('''CREATE TABLE tags
