@@ -42,6 +42,12 @@ def search(field, value, c):
         return search_by_tags(value, c)
     return search_by_field(field, value, c)
 
+def print_tags_set(c):
+    tags = set()
+    for row in c.execute('''SELECT tag from tags'''):
+        tags.add(row[0])
+    print("All Paper Tags: %s" % ",".join(list(tags)))
+
 if __name__ == "__main__":
     args = parser.parse_args()
     conn = sqlite3.connect('cs242papers.db')
@@ -53,6 +59,8 @@ if __name__ == "__main__":
         paper_ids = search(args.field, args.value, c)
     for paper_id in paper_ids:
         describe_paper(paper_id, c)
+
+    print_tags_set(c)
 
     conn.close()
 
